@@ -6,16 +6,13 @@ from csh.webnews import Webnews
 
 def select():
     with open('names.txt', 'r+') as namesfile:
-        names = [x for x in namesfile]
-        assignees = [random.choice(names).strip(),
-                     random.choice(names).strip(),
-                     random.choice(names).strip()]
-        [names.remove(x+'\n') for x in assignees]
-        print names
+        names = namesfile.readlines() 
+        assignees = random.sample(names, min(3, len(names)))
+        [names.remove(n) for n in assignees]
         namesfile.seek(0)
         namesfile.write(''.join(names))
         namesfile.truncate()
-        return assignees
+        return [a.strip() for a in assignees]
 
 
 def message(assignees):
