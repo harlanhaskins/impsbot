@@ -57,7 +57,6 @@ if __name__ == '__main__':
         exit(1)
     title, body = message(names)
     newsgroup = 'csh.committee.house-imps'
-    print body
     wn = Webnews(creds.api_key, creds.api_agent)
     wn.compose(newsgroup=newsgroup,
                subject=title,
